@@ -510,7 +510,7 @@ fi
 ###############################################################################
 
 echo ""
-echo "Privacy: Don’t send search queries to Apple"
+echo "Privacy: Donâ€™t send search queries to Apple"
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
 
@@ -633,27 +633,47 @@ echo ""
 echo "Do you use Transmission for torrenting? (y/n)"
 read -r response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  mkdir -p ~/Downloads/Incomplete
+
   echo ""
   echo "Setting up an incomplete downloads folder in Downloads"
-  mkdir -p ~/Downloads/Incomplete
   defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
   defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
+
+  echo ""
+  echo "Setting auto-add folder to be Downloads"
+  defaults write org.m0k.transmission AutoImportDirectory -string "${HOME}/Downloads"
 
   echo ""
   echo "Don't prompt for confirmation before downloading"
   defaults write org.m0k.transmission DownloadAsk -bool false
 
   echo ""
-  echo "Trash original torrent files"
+  echo "Trash original torrent files after adding them"
   defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
 
   echo ""
-  echo "Hide the donate message"
+  echo "Hiding the donate message"
   defaults write org.m0k.transmission WarningDonate -bool false
 
   echo ""
-  echo "Hide the legal disclaimer"
+  echo "Hiding the legal disclaimer"
   defaults write org.m0k.transmission WarningLegal -bool false
+
+  echo ""
+  echo "Auto-resizing the window to fit transfers"
+  defaults write org.m0k.transmission AutoSize -bool true
+
+  echo ""
+  echo "Auto updating to betas"
+  defaults write org.m0k.transmission AutoUpdateBeta -bool true
+
+  echo ""
+  echo "Setting up the best block list"
+  defaults write org.m0k.transmission EncryptionRequire -bool true
+  defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
+  defaults write org.m0k.transmission BlocklistNew -bool true
+  defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
 fi
 
 
