@@ -181,19 +181,12 @@ apps=(
   spotify
   flux
   dropbox
-  cloudup
   transmit
   virtualbox
-  sketch
-  sublime-text-3
-  adobe-creative-cloud
   calibre
   appcleaner
   sequel-pro
-  slack
   iterm2
-  phpstorm
-  telegram
   transmission
   vagrant-manager
   vlc
